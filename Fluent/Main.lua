@@ -201,7 +201,24 @@ local a, b = {
     }
 }
 
-local Animation = loadstring(game:HttpGet("https://raw.githubusercontent.com/BaiSoku1/Fluent-Modded/refs/heads/master/Addons/Animation.lua"))()
+local Animation
+pcall(function()
+    local _fn = loadstring(game:HttpGet("https://raw.githubusercontent.com/BaiSoku1/Fluent-Modded/refs/heads/master/Addons/Animation.lua"))
+    if _fn then Animation = _fn() end
+end)
+if not Animation then Animation = {Apply = function() end} end
+getgenv().ShineEnabled = true
+getgenv().ButtonGradients = {
+    Background = ColorSequence.new {
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(7, 42, 82)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(12, 76, 142)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(21, 97, 181))
+    },
+    Stroke = ColorSequence.new {
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 120, 200)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 40, 80))
+    }
+}
 
 local aa = {
     function()
